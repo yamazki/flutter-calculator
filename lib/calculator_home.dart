@@ -2,6 +2,7 @@ import 'package:calculator/calculator_button/evaluate_button.dart';
 import 'package:calculator/calculator_button/calculation_symbol_button.dart';
 import 'package:calculator/calculator_button/clear_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'calculator_button/number_button.dart';
 
 class Calculator extends StatefulWidget {
@@ -17,6 +18,10 @@ class CalculatorState extends State<Calculator> {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown
+    ]);
     return Scaffold(
       appBar: AppBar(
         title: Text('Caliculator')
@@ -25,6 +30,9 @@ class CalculatorState extends State<Calculator> {
         child: Container(
           child: Column(
             children: <Widget>[
+              Container(
+                padding: EdgeInsets.only(top: 30.0)
+              ),
               Container(
                 padding: EdgeInsets.all(5.0),
                 margin: EdgeInsets.all(5.0),
@@ -40,9 +48,12 @@ class CalculatorState extends State<Calculator> {
                   },
                 )
               ),
+              Container(
+                padding:EdgeInsets.only(bottom: 40.0)
+              ),
               Expanded(
                 child: GridView.count(
-                  crossAxisCount: MediaQuery.of(context).orientation.toString() == "Orientation.portrait" ? 4 : 8,
+                  crossAxisCount: 4, //MediaQuery.of(context).orientation.toString() == "Orientation.portrait" ? 4 : 8,
                   padding: const EdgeInsets.all(4.0),
                   childAspectRatio: 1.0,
                   mainAxisSpacing: 6.0,
@@ -50,7 +61,7 @@ class CalculatorState extends State<Calculator> {
                   children: <Widget>[
                     CalculationSymbolButton(buttonText:'(', textEditingController: this._textEditingController),
                     CalculationSymbolButton(buttonText:')', textEditingController: this._textEditingController),
-                    CalculationSymbolButton(buttonText:'%', textEditingController: this._textEditingController),
+                    ClearButton(buttonText:'C', textEditingController: this._textEditingController),
                     ClearButton(buttonText:'AC', textEditingController: this._textEditingController),
                     NumberButton(buttonText:'7', textEditingController: this._textEditingController),
                     NumberButton(buttonText:'8', textEditingController: this._textEditingController),

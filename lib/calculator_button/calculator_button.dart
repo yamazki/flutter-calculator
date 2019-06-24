@@ -9,6 +9,19 @@ abstract class CalculatorButton extends StatelessWidget{
 
   void buttonOnPressed();
 
+  Widget build(BuildContext context) {
+    return RaisedButton(
+      onPressed: buttonOnPressed,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
+      child: Container(
+        child: Text(
+          this.buttonText,
+          style: TextStyle(fontSize: 40)
+        ),
+      ),
+    );
+  }
+
 }
 
 

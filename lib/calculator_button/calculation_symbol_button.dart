@@ -11,18 +11,4 @@ class CalculationSymbolButton extends CalculatorButton {
     super.textEditingController.text += " ${super.buttonText} ";
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return RaisedButton(
-      onPressed: buttonOnPressed,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
-      child: Container(
-        child: Text(
-            this.buttonText,
-            style: TextStyle(fontSize: 40)
-        ),
-      ),
-    );
-  }
-
 }
